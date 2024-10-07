@@ -1,0 +1,60 @@
+basePath: /mock
+definitions:
+  main.Description:
+    properties:
+      description:
+        type: string
+    type: object
+  main.LyricsAPIResponse:
+    properties:
+      link:
+        type: string
+      releaseDate:
+        type: string
+      text:
+        type: string
+    type: object
+host: localhost:3031
+info:
+  contact:
+    email: smagulmyrzakhmet@gmail.com
+    name: API Support
+  description: This is a sample mock.
+  title: Mock API
+  version: "1.0"
+paths:
+  /info:
+    get:
+      consumes:
+      - application/json
+      description: Получить данные о музыке
+      parameters:
+      - description: Group name
+        in: query
+        name: group
+        required: true
+        type: string
+      - description: Song name
+        in: query
+        name: song
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.LyricsAPIResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/main.Description'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/main.Description'
+      summary: Get song info
+      tags:
+      - Songs
+swagger: "2.0"
